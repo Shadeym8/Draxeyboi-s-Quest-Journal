@@ -1,0 +1,14 @@
+{
+  "id": "qjrnl",
+  "title": "Draxeyboi's Quest Journal",
+  "description": "A lightweight journal-backed quest tracker. GM creates and manages quests; players view them.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "license": "LICENSE",
+  "authors": [{ "name": "Draxeyboi" }],
+  "esmodules": ["quest-journel.mjs"],
+  "styles": ["styles/quest-journel.css"]
+}

@@ -1,0 +1,156 @@
+{{!-- Quest Journel — quest-log.hbs --}}
+<div class="qjrnl-layout">
+
+  {{!-- ── LEFT: Sidebar ─────────────────────────────────────────────────── --}}
+  <aside class="qjrnl-sidebar">
+
+    {{#if isGM}}
+    <div class="qjrnl-toolbar">
+      <button type="button" data-action="createQuest" class="qjrnl-btn-create">
+        <i class="fas fa-plus"></i> New Quest
+      </button>
+    </div>
+    {{/if}}
+
+    <div class="qjrnl-sidebar-body">
+
+      {{!-- Active --}}
+      <div class="qjrnl-section">
+        <div class="qjrnl-section-header qjrnl-section-header--active">
+          <span>Current</span>
+        </div>
+        <ul class="qjrnl-list">
+          {{#each active}}
+          <li class="qjrnl-quest{{#if this.isSelected}} qjrnl-quest--selected{{/if}}{{#unless this.revealed}} qjrnl-quest--hidden{{/unless}}"
+              data-quest-id="{{this.id}}">
+            <div class="qjrnl-quest-row">
+              <span class="qjrnl-status-icon qjrnl-status--active">!</span>
+              <span class="qjrnl-quest-name" data-action="selectQuest">{{this.name}}</span>
+              {{#if ../isGM}}
+              <div class="qjrnl-quest-controls">
+                <button type="button" class="qjrnl-btn-more"><i class="fas fa-ellipsis-v"></i></button>
+                <div class="qjrnl-quest-menu">
+                  <button type="button" data-action="editQuest"><i class="fas fa-pen"></i> Edit</button>
+                  <button type="button" data-action="revealQuest">{{#if this.revealed}}<i class="fas fa-eye-slash"></i> Hide{{else}}<i class="fas fa-eye"></i> Reveal{{/if}}</button>
+                  <button type="button" data-action="setStatus" data-status="complete"><i class="fas fa-check"></i> Complete</button>
+                  <button type="button" data-action="setStatus" data-status="failed"><i class="fas fa-times"></i> Fail</button>
+                  <button type="button" data-action="deleteQuest" class="qjrnl-btn-delete"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+              </div>
+              {{/if}}
+            </div>
+            {{#if this.pages.length}}
+            <ul class="qjrnl-quest-subpages">
+              {{#each this.pages}}<li class="qjrnl-quest-subpage">{{this}}</li>{{/each}}
+            </ul>
+            {{/if}}
+          </li>
+          {{else}}
+          <li class="qjrnl-empty">None.</li>
+          {{/each}}
+        </ul>
+      </div>
+
+      {{!-- Complete --}}
+      <div class="qjrnl-section">
+        <div class="qjrnl-section-header qjrnl-section-header--complete">
+          <span>Complete</span>
+        </div>
+        <ul class="qjrnl-list">
+          {{#each complete}}
+          <li class="qjrnl-quest qjrnl-quest--complete{{#if this.isSelected}} qjrnl-quest--selected{{/if}}{{#unless this.revealed}} qjrnl-quest--hidden{{/unless}}"
+              data-quest-id="{{this.id}}">
+            <div class="qjrnl-quest-row">
+              <span class="qjrnl-status-icon qjrnl-status--complete">✓</span>
+              <span class="qjrnl-quest-name" data-action="selectQuest">{{this.name}}</span>
+              {{#if ../isGM}}
+              <div class="qjrnl-quest-controls">
+                <button type="button" class="qjrnl-btn-more"><i class="fas fa-ellipsis-v"></i></button>
+                <div class="qjrnl-quest-menu">
+                  <button type="button" data-action="editQuest"><i class="fas fa-pen"></i> Edit</button>
+                  <button type="button" data-action="revealQuest">{{#if this.revealed}}<i class="fas fa-eye-slash"></i> Hide{{else}}<i class="fas fa-eye"></i> Reveal{{/if}}</button>
+                  <button type="button" data-action="setStatus" data-status="active"><i class="fas fa-undo"></i> Reopen</button>
+                  <button type="button" data-action="deleteQuest" class="qjrnl-btn-delete"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+              </div>
+              {{/if}}
+            </div>
+          </li>
+          {{else}}
+          <li class="qjrnl-empty">None.</li>
+          {{/each}}
+        </ul>
+      </div>
+
+      {{!-- Failed --}}
+      <div class="qjrnl-section">
+        <div class="qjrnl-section-header qjrnl-section-header--failed">
+          <span>Failed</span>
+        </div>
+        <ul class="qjrnl-list">
+          {{#each failed}}
+          <li class="qjrnl-quest qjrnl-quest--failed{{#if this.isSelected}} qjrnl-quest--selected{{/if}}{{#unless this.revealed}} qjrnl-quest--hidden{{/unless}}"
+              data-quest-id="{{this.id}}">
+            <div class="qjrnl-quest-row">
+              <span class="qjrnl-status-icon qjrnl-status--failed">✗</span>
+              <span class="qjrnl-quest-name" data-action="selectQuest">{{this.name}}</span>
+              {{#if ../isGM}}
+              <div class="qjrnl-quest-controls">
+                <button type="button" class="qjrnl-btn-more"><i class="fas fa-ellipsis-v"></i></button>
+                <div class="qjrnl-quest-menu">
+                  <button type="button" data-action="editQuest"><i class="fas fa-pen"></i> Edit</button>
+                  <button type="button" data-action="revealQuest">{{#if this.revealed}}<i class="fas fa-eye-slash"></i> Hide{{else}}<i class="fas fa-eye"></i> Reveal{{/if}}</button>
+                  <button type="button" data-action="setStatus" data-status="active"><i class="fas fa-undo"></i> Reopen</button>
+                  <button type="button" data-action="deleteQuest" class="qjrnl-btn-delete"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+              </div>
+              {{/if}}
+            </div>
+          </li>
+          {{else}}
+          <li class="qjrnl-empty">None.</li>
+          {{/each}}
+        </ul>
+      </div>
+
+    </div>{{!-- /.qjrnl-sidebar-body --}}
+  </aside>
+
+  {{!-- ── RIGHT: Detail panel ────────────────────────────────────────────── --}}
+  <div class="qjrnl-detail" data-quest-id="{{selectedQuestId}}">
+    {{#if selectedQuestName}}
+
+      <h1 class="qjrnl-quest-title">{{selectedQuestName}}</h1>
+      <p class="qjrnl-quest-objective-label">Objective:</p>
+
+      {{#each selectedPages}}
+      <div class="qjrnl-page{{#if this.done}} qjrnl-page--done{{/if}}" data-page-id="{{this.id}}">
+        <h2 class="qjrnl-page-header">
+          <span class="qjrnl-page-name">{{this.name}}</span>
+          {{#if ../isGM}}
+          <button type="button" class="qjrnl-page-eye{{#unless this.revealed}} qjrnl-page-eye--hidden{{/unless}}"
+                  data-action="revealPage"
+                  data-tooltip="{{#if this.revealed}}Hide from players{{else}}Reveal to players{{/if}}">
+            <i class="fas {{#if this.revealed}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
+          </button>
+          <button type="button" class="qjrnl-page-check" data-action="checkPage" data-tooltip="Mark complete">
+            <i class="fas {{#if this.done}}fa-square-check{{else}}fa-square{{/if}}"></i>
+          </button>
+          {{/if}}
+        </h2>
+        <div class="qjrnl-page-content">{{{this.content}}}</div>
+      </div>
+      {{else}}
+      <p class="qjrnl-detail-empty">This quest has no pages yet.</p>
+      {{/each}}
+
+    {{else}}
+    <div class="qjrnl-detail-placeholder">
+      <i class="fas fa-scroll"></i>
+      <p>Select a quest to view its details.</p>
+    </div>
+    {{/if}}
+  </div>
+<img class="qjrnl-bg-texture" src="modules/qjrnl/assets/icons/parchtexturebr.webp" alt="">
+</div>{{!-- /.qjrnl-layout --}}
+

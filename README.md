@@ -14,6 +14,9 @@ A Simple Lightweight module system that helps to track Foundry's Journals throug
 
 ---
 
+<img width="985" height="777" alt="image" src="https://github.com/user-attachments/assets/3f4dd55d-468e-4c63-88e6-57f3fbe8e546" />
+
+
 ## How to Use
 
 ### GM

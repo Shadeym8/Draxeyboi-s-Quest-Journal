@@ -1,5 +1,5 @@
 /**
- * Quest Journel — settings.mjs
+ * Quest Journal — settings.mjs
  * Module settings registration.
  */
 

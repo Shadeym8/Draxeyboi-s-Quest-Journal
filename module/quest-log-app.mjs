@@ -1,5 +1,5 @@
 /**
- * Quest Journel — quest-log-app.mjs
+ * Quest Journal — quest-log-app.mjs
  * ApplicationV2 quest log dialog.
  */
 
@@ -11,7 +11,7 @@ export class QuestLogApp extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static DEFAULT_OPTIONS = {
     id:       "qjrnl-app",
-    classes:  ["quest-journel"],
+    classes:  ["quest-Journal"],
     tag:      "div",
     window:   { title: "", resizable: true },
     position: { width: 900, height: 650 },
@@ -24,6 +24,12 @@ export class QuestLogApp extends HandlebarsApplicationMixin(ApplicationV2) {
       revealQuest:  QuestLogApp._onRevealQuest,
       revealPage:   QuestLogApp._onRevealPage,
       checkPage:    QuestLogApp._onCheckPage,
+      switchTab:    QuestLogApp._onSwitchTab,
+      openNote:     QuestLogApp._onOpenNote,
+      editNote:     QuestLogApp._onOpenNote,
+      selectNote:   QuestLogApp._onSelectNote_Note,
+      createNote:   QuestLogApp._onCreateNote,
+      deleteNote:   QuestLogApp._onDeleteNote,
     },
   };
 
@@ -36,6 +42,15 @@ export class QuestLogApp extends HandlebarsApplicationMixin(ApplicationV2) {
 
   /** Currently selected quest ID. */
   #selectedQuestId = null;
+
+  /** Quest IDs whose subpage list is currently collapsed. */
+  #collapsedQuests = new Set();
+
+  /** Currently active tab: "quests" or "notes". */
+  #activeTab = "quests";
+
+  /** Currently selected note ID. */
+  #selectedNoteId = null;
 
   /* ── Singleton ──────────────────────────────────────────────────────────── */
 
@@ -112,6 +127,25 @@ export class QuestLogApp extends HandlebarsApplicationMixin(ApplicationV2) {
     context.complete = mapQuests(grouped.complete ?? []);
     context.failed   = mapQuests(grouped.failed   ?? []);
 
+    context.isQuestsTab = this.#activeTab === "quests";
+    context.isNotesTab  = this.#activeTab === "notes";
+
+    // Clear selection if the note was deleted.
+    if (this.#selectedNoteId && !game.journal.get(this.#selectedNoteId)) {
+      this.#selectedNoteId = null;
+    }
+
+    context.notes = game.journal.contents
+      .filter(j => j.isOwner && !j.getFlag(MODULE_ID, "status"))
+      .map(j => ({ id: j.id, name: j.name, isSelected: j.id === this.#selectedNoteId }));
+
+    // Detail panel — pages of the selected note.
+    const selectedNote = this.#selectedNoteId ? game.journal.get(this.#selectedNoteId) : null;
+    context.selectedNoteName  = selectedNote?.name ?? null;
+    context.selectedNoteId    = selectedNote?.id ?? null;
+    context.selectedNotePages = selectedNote?.pages?.contents
+      .map(p => ({ id: p.id, name: p.name, content: p.text?.content ?? "" })) ?? [];
+
     // Detail panel — pages of the selected quest.
     const selected = this.#selectedQuestId ? game.journal.get(this.#selectedQuestId) : null;
     context.selectedQuestName = selected?.name ?? null;
@@ -177,6 +211,38 @@ export class QuestLogApp extends HandlebarsApplicationMixin(ApplicationV2) {
     await QuestManager.togglePageDone(questId, pageId);
   }
 
+  static _onSwitchTab(event, target) {
+    this.#activeTab = target.dataset.tab ?? "quests";
+    this.render();
+  }
+
+  static _onSelectNote_Note(event, target) {
+    const id = target.closest("[data-note-id]")?.dataset.noteId;
+    this.#selectedNoteId = id ?? null;
+    this.render();
+  }
+
+  static _onOpenNote(event, target) {
+    const id = target.closest("[data-note-id]")?.dataset.noteId;
+    game.journal.get(id)?.sheet.render({ force: true });
+  }
+
+  static async _onCreateNote(event, target) {
+    const note = await JournalEntry.create({ name: "New Note" });
+    note?.sheet.render({ force: true });
+  }
+
+  static async _onDeleteNote(event, target) {
+    const id   = target.closest("[data-note-id]")?.dataset.noteId;
+    const note = game.journal.get(id);
+    if (!note) return;
+    const confirmed = await DialogV2.confirm({
+      window:  { title: "Delete Note" },
+      content: `<p>Delete <strong>${note.name}</strong>? This cannot be undone.</p>`,
+    });
+    if (confirmed) await note.delete();
+  }
+
   static async _onCreateQuest(event, target) {
     const name = await DialogV2.prompt({
       window:  { title: "New Quest" },
@@ -210,5 +276,26 @@ export class QuestLogApp extends HandlebarsApplicationMixin(ApplicationV2) {
     });
 
     this.element.addEventListener("click", closeMenus);
+
+    // Re-apply subpage collapse state (survives re-renders)
+    for (const questId of this.#collapsedQuests) {
+      const li = this.element.querySelector(`.qjrnl-quest[data-quest-id="${questId}"]`);
+      if (!li) { this.#collapsedQuests.delete(questId); continue; }
+      li.classList.add("qjrnl-quest--collapsed");
+      li.querySelector(".qjrnl-subpage-toggle i")?.classList.replace("fa-chevron-down", "fa-chevron-up");
+    }
+
+    this.element.querySelectorAll(".qjrnl-subpage-toggle").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const li        = btn.closest(".qjrnl-quest");
+        const questId   = li.dataset.questId;
+        const collapsed = li.classList.toggle("qjrnl-quest--collapsed");
+        btn.querySelector("i").classList.toggle("fa-chevron-down", !collapsed);
+        btn.querySelector("i").classList.toggle("fa-chevron-up",    collapsed);
+        if (collapsed) this.#collapsedQuests.add(questId);
+        else           this.#collapsedQuests.delete(questId);
+      });
+    });
   }
 }

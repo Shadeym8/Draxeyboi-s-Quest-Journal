@@ -1,18 +1,18 @@
-/* Quest Journel — quest-journel.css */
+/* Quest Journal — quest-Journal.css */
 
 /* ── Window shell ─────────────────────────────────────────────────────────── */
-.quest-journel.application {
+.quest-Journal.application {
   background: linear-gradient(160deg, #1c1c1c 0%, #101010 45%, #000000 100%);
   border:     1px solid #242424;
   box-shadow: 0 0 48px rgba(0, 0, 0, 0.95), inset 0 0 80px rgba(0, 0, 0, 0.35);
 }
 
-.quest-journel.application .window-content {
+.quest-Journal.application .window-content {
   background: transparent;
   padding:    0;
 }
 
-.quest-journel.application .window-header {
+.quest-Journal.application .window-header {
 position: absolute;
     width: 100%;
     background: none;
@@ -22,7 +22,7 @@ position: absolute;
 }
 
 /* ── Two-column layout ────────────────────────────────────────────────────── */
-.quest-journel .qjrnl-layout {
+.quest-Journal .qjrnl-layout {
   display:        flex;
   flex-direction: column;
   height:         100%;
@@ -31,13 +31,13 @@ position: absolute;
   font-family:    var(--font-primary, inherit);
 }
 
-.quest-journel .qjrnl-columns {
+.quest-Journal .qjrnl-columns {
   display:  flex;
   flex:     1;
   overflow: hidden;
 }
 
-.quest-journel .qjrnl-bg-texture {
+.quest-Journal .qjrnl-bg-texture {
   position:        absolute;
   bottom:          0;
   right:           0;
@@ -51,7 +51,7 @@ position: absolute;
 }
 
 /* ── LEFT: Sidebar ────────────────────────────────────────────────────────── */
-.quest-journel .qjrnl-sidebar {
+.quest-Journal .qjrnl-sidebar {
   display:        flex;
   flex-direction: column;
   width:          260px;
@@ -70,7 +70,7 @@ position: absolute;
   border-bottom: 1px solid #1c1c1c;
 }
 
-.quest-journel .qjrnl-tab {
+.quest-Journal .qjrnl-tab {
 color: #bfbaad;
     width: 160px;
     height: 50px;
@@ -83,7 +83,7 @@ color: #bfbaad;
     text-shadow: 2px 1px black;
 }
 
-.quest-journel .qjrnl-tab--active {
+.quest-Journal .qjrnl-tab--active {
     width: 160px;
     height: 50px;
     display: flex;
@@ -96,12 +96,12 @@ color: #bfbaad;
 }
 
 /* ── Toolbar ──────────────────────────────────────────────────────────────── */
-.quest-journel .qjrnl-toolbar {
+.quest-Journal .qjrnl-toolbar {
   display:         flex;
   justify-content: center;
 }
 
-.quest-journel .qjrnl-btn-create {
+.quest-Journal .qjrnl-btn-create {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -118,8 +118,8 @@ color: #bfbaad;
     margin-top: 5px;
 }
 
-.quest-journel .qjrnl-btn-create::before,
-.quest-journel .qjrnl-btn-create::after {
+.quest-Journal .qjrnl-btn-create::before,
+.quest-Journal .qjrnl-btn-create::after {
   content:    "";
   flex:       1;
   height:     1px;
@@ -127,35 +127,35 @@ color: #bfbaad;
   opacity:    0.35;
 }
 
-.quest-journel .qjrnl-btn-create:hover {
+.quest-Journal .qjrnl-btn-create:hover {
   color: #d9cdb8;
 }
 
-.quest-journel .qjrnl-btn-create:hover::before,
-.quest-journel .qjrnl-btn-create:hover::after {
+.quest-Journal .qjrnl-btn-create:hover::before,
+.quest-Journal .qjrnl-btn-create:hover::after {
   opacity: 0.6;
 }
 
 /* ── Sidebar scrollable body ──────────────────────────────────────────────── */
-.quest-journel .qjrnl-sidebar-body {
+.quest-Journal .qjrnl-sidebar-body {
   flex:       1;
   overflow-y: auto;
   padding:    4px 0;
 }
 
 /* ── RIGHT: Detail panel ──────────────────────────────────────────────────── */
-.quest-journel .qjrnl-detail {
+.quest-Journal .qjrnl-detail {
   flex:       1;
   overflow-y: auto;
   padding:    28px 32px 24px;
 }
 
 /* ── Section ──────────────────────────────────────────────────────────────── */
-.quest-journel .qjrnl-section {
+.quest-Journal .qjrnl-section {
   margin-bottom: 2px;
 }
 
-.quest-journel .qjrnl-section-header {
+.quest-Journal .qjrnl-section-header {
   display:        flex;
   align-items:    center;
   gap:            8px;
@@ -169,29 +169,29 @@ color: #bfbaad;
   border: none;
 }
 
-.quest-journel .qjrnl-section-header i {
+.quest-Journal .qjrnl-section-header i {
   width:      14px;
   text-align: center;
 }
 
-.quest-journel .qjrnl-section-header--active   { color: #c8b87a; }
-.quest-journel .qjrnl-section-header--complete { color: #6a5e42; }
-.quest-journel .qjrnl-section-header--failed   { color: #524e46; }
+.quest-Journal .qjrnl-section-header--active   { color: #c8b87a; }
+.quest-Journal .qjrnl-section-header--complete { color: #6a5e42; }
+.quest-Journal .qjrnl-section-header--failed   { color: #524e46; }
 
-.quest-journel .qjrnl-count {
+.quest-Journal .qjrnl-count {
   margin-left: auto;
   color:       #2e2e2e;
   font-size:   0.9em;
 }
 
 /* ── Quest list ───────────────────────────────────────────────────────────── */
-.quest-journel .qjrnl-list {
+.quest-Journal .qjrnl-list {
   list-style: none;
   margin:     0;
   padding:    0;
 }
 
-.quest-journel .qjrnl-quest {
+.quest-Journal .qjrnl-quest {
   display:        flex;
   flex-direction: column;
   padding:        3px 12px;
@@ -199,23 +199,23 @@ color: #bfbaad;
   margin: 0;
 }
 
-.quest-journel .qjrnl-quest-row {
+.quest-Journal .qjrnl-quest-row {
   display:     flex;
   align-items: center;
   gap:         3px;
   width:       100%;
 }
 
-.quest-journel .qjrnl-quest-subpages {
+.quest-Journal .qjrnl-quest-subpages {
   padding-left: 35px;
   list-style: none;
 }
 
-.quest-journel .qjrnl-quest--collapsed .qjrnl-quest-subpages {
+.quest-Journal .qjrnl-quest--collapsed .qjrnl-quest-subpages {
   display: none;
 }
 
-.quest-journel .qjrnl-subpage-toggle {
+.quest-Journal .qjrnl-subpage-toggle {
   background:  none;
   border:      none;
   padding:     0 2px;
@@ -226,11 +226,11 @@ color: #bfbaad;
   transition:  color 0.12s;
 }
 
-.quest-journel .qjrnl-subpage-toggle:hover {
+.quest-Journal .qjrnl-subpage-toggle:hover {
   color: #bdb09a;
 }
 
-.quest-journel .qjrnl-quest-subpage {
+.quest-Journal .qjrnl-quest-subpage {
   display:   flex;
   gap:       5px;
   font-size: 0.85em;
@@ -238,11 +238,11 @@ color: #bfbaad;
   margin:    0 0 5px;
 }
 
-.quest-journel .qjrnl-quest:hover {
+.quest-Journal .qjrnl-quest:hover {
   background: transparent;
 }
 
-.quest-journel .qjrnl-quest-name {
+.quest-Journal .qjrnl-quest-name {
   flex:          1;
   cursor:        pointer;
   font-size:     0.92em;
@@ -253,24 +253,24 @@ color: #bfbaad;
   transition:    color 0.12s;
 }
 
-.quest-journel .qjrnl-quest-name:hover {
+.quest-Journal .qjrnl-quest-name:hover {
   color: #ddd0b0;
 }
 
 /* Status-specific name tint */
-.quest-journel .qjrnl-quest--complete .qjrnl-quest-name {
+.quest-Journal .qjrnl-quest--complete .qjrnl-quest-name {
   color:           #bdb09a;
   text-decoration: line-through;
   opacity:         0.45;
 }
 
-.quest-journel .qjrnl-quest--failed .qjrnl-quest-name {
+.quest-Journal .qjrnl-quest--failed .qjrnl-quest-name {
   color:   #bdb09a;
   opacity: 0.4;
 }
 
 /* ── Quest status icons ───────────────────────────────────────────────────── */
-.quest-journel .qjrnl-status-icon {
+.quest-Journal .qjrnl-status-icon {
   flex-shrink: 0;
   width:       12px;
   text-align:  center;
@@ -278,23 +278,23 @@ color: #bfbaad;
   line-height: 1;
 }
 
-.quest-journel .qjrnl-status--active {
+.quest-Journal .qjrnl-status--active {
   font-style:  italic;
   font-size:   20px;
   color:       #c3a447;
   text-shadow: 0 0 6px rgb(251 210 43);
 }
 
-.quest-journel .qjrnl-status--complete { color: #5a5448; }
-.quest-journel .qjrnl-status--failed   { color: #4e4a44; }
+.quest-Journal .qjrnl-status--complete { color: #5a5448; }
+.quest-Journal .qjrnl-status--failed   { color: #4e4a44; }
 
 /* ── Quest action buttons ─────────────────────────────────────────────────── */
-.quest-journel .qjrnl-quest-controls {
+.quest-Journal .qjrnl-quest-controls {
   position:    relative;
   flex-shrink: 0;
 }
 
-.quest-journel .qjrnl-btn-more {
+.quest-Journal .qjrnl-btn-more {
   width:           18px;
   height:          18px;
   padding:         0;
@@ -309,11 +309,11 @@ color: #bfbaad;
   transition:      color 0.12s;
 }
 
-.quest-journel .qjrnl-btn-more:hover {
+.quest-Journal .qjrnl-btn-more:hover {
   color: #a0a0a0;
 }
 
-.quest-journel .qjrnl-quest-menu {
+.quest-Journal .qjrnl-quest-menu {
   display:        none;
   flex-direction: column;
   position:       absolute;
@@ -327,11 +327,11 @@ color: #bfbaad;
   box-shadow:     0 4px 12px rgba(0,0,0,0.6);
 }
 
-.quest-journel .qjrnl-quest-controls.open .qjrnl-quest-menu {
+.quest-Journal .qjrnl-quest-controls.open .qjrnl-quest-menu {
   display: flex;
 }
 
-.quest-journel .qjrnl-quest-menu button {
+.quest-Journal .qjrnl-quest-menu button {
   width:       100%;
   padding:     5px 10px;
   background:  transparent;
@@ -346,34 +346,34 @@ color: #bfbaad;
   transition:  background 0.1s, color 0.1s;
 }
 
-.quest-journel .qjrnl-quest-menu button:hover {
+.quest-Journal .qjrnl-quest-menu button:hover {
   background: #2a2520;
   color:      #c8b890;
 }
 
-.quest-journel .qjrnl-quest-menu .qjrnl-btn-delete:hover {
+.quest-Journal .qjrnl-quest-menu .qjrnl-btn-delete:hover {
   color: #c05050;
 }
 
 /* ── Quest selected state — glow only, no bg/border ──────────────────────── */
-.quest-journel .qjrnl-quest--selected {
+.quest-Journal .qjrnl-quest--selected {
   background:  none;
   border-left: none;
 }
 
-.quest-journel .qjrnl-quest--selected .qjrnl-quest-name {
+.quest-Journal .qjrnl-quest--selected .qjrnl-quest-name {
   color: #ddd0b0;
   text-shadow: 0 0 8px rgb(212 190 132 / 16%), 0 0 20px rgba(212, 190, 132, 0.25)
 }
 
 /* ── Hidden quest (GM view) ───────────────────────────────────────────────── */
-.quest-journel .qjrnl-quest--hidden .qjrnl-status-icon,
-.quest-journel .qjrnl-quest--hidden .qjrnl-quest-name {
+.quest-Journal .qjrnl-quest--hidden .qjrnl-status-icon,
+.quest-Journal .qjrnl-quest--hidden .qjrnl-quest-name {
   opacity: 0.4;
 }
 
 /* ── Empty state ──────────────────────────────────────────────────────────── */
-.quest-journel .qjrnl-empty {
+.quest-Journal .qjrnl-empty {
   padding:    8px 14px;
   font-size:  0.78em;
   color:      #3a3a3a;
@@ -381,7 +381,7 @@ color: #bfbaad;
 }
 
 /* ── Detail panel pages ───────────────────────────────────────────────────── */
-.quest-journel .qjrnl-quest-title {
+.quest-Journal .qjrnl-quest-title {
   margin:         0 0 4px;
   padding:        0;
   border:         none;
@@ -391,7 +391,7 @@ color: #bfbaad;
   color:          #bfbaad;
 }
 
-.quest-journel .qjrnl-quest-objective-label {
+.quest-Journal .qjrnl-quest-objective-label {
   margin:         0 0 20px;
   padding:        0;
   font-size:      0.72em;
@@ -402,7 +402,7 @@ color: #bfbaad;
 }
 
 /* Page header — left-aligned, flare icon prefix, no border */
-.quest-journel .qjrnl-page-header {
+.quest-Journal .qjrnl-page-header {
   display:     flex;
   align-items: center;
   gap:         10px;
@@ -414,13 +414,13 @@ color: #bfbaad;
   color:       #bfbaad;
 }
 
-.quest-journel .qjrnl-page-name {
+.quest-Journal .qjrnl-page-name {
   flex: 1;
 }
 
 /* ── Page action buttons (eye + check) ───────────────────────────────────── */
-.quest-journel .qjrnl-page-eye,
-.quest-journel .qjrnl-page-check {
+.quest-Journal .qjrnl-page-eye,
+.quest-Journal .qjrnl-page-check {
   flex-shrink: 0;
   background:  none;
   border:      none;
@@ -432,33 +432,33 @@ color: #bfbaad;
   transition:  color 0.12s, opacity 0.12s;
 }
 
-.quest-journel .qjrnl-page-eye   { opacity: 0.7; }
-.quest-journel .qjrnl-page-check { opacity: 0.4; }
+.quest-Journal .qjrnl-page-eye   { opacity: 0.7; }
+.quest-Journal .qjrnl-page-check { opacity: 0.4; }
 
-.quest-journel .qjrnl-page-eye:hover,
-.quest-journel .qjrnl-page-check:hover {
+.quest-Journal .qjrnl-page-eye:hover,
+.quest-Journal .qjrnl-page-check:hover {
   color:   #a09070;
   opacity: 1;
 }
 
-.quest-journel .qjrnl-page-eye--hidden { opacity: 0.3; }
+.quest-Journal .qjrnl-page-eye--hidden { opacity: 0.3; }
 
-.quest-journel .qjrnl-page--done .qjrnl-page-check {
+.quest-Journal .qjrnl-page--done .qjrnl-page-check {
   color:   #7a9a70;
   opacity: 1;
 }
 
-.quest-journel .qjrnl-page--done .qjrnl-page-name {
+.quest-Journal .qjrnl-page--done .qjrnl-page-name {
   text-decoration: line-through;
   opacity:         0.45;
 }
 
-.quest-journel .qjrnl-page--done .qjrnl-page-content {
+.quest-Journal .qjrnl-page--done .qjrnl-page-content {
   text-decoration: line-through;
   opacity:         0.35;
 }
 
-.quest-journel .qjrnl-page-header::before {
+.quest-Journal .qjrnl-page-header::before {
   content:    "";
   display:    inline-block;
   width:      20px;
@@ -468,21 +468,21 @@ color: #bfbaad;
   opacity:    0.75;
 }
 
-.quest-journel .qjrnl-page-header::after {
+.quest-Journal .qjrnl-page-header::after {
   display: none;
 }
 
 /* Page content — muted, cooler tone */
-.quest-journel .qjrnl-page-content {
+.quest-Journal .qjrnl-page-content {
   font-size:   0.88em;
   line-height: 1.75;
   color:       #7e7668;
 }
 
-.quest-journel .qjrnl-page-content p { margin: 0 0 10px 60px; }
+.quest-Journal .qjrnl-page-content p { margin: 0 0 10px 60px; }
 
 /* Placeholder when nothing is selected */
-.quest-journel .qjrnl-detail-placeholder {
+.quest-Journal .qjrnl-detail-placeholder {
   display:         flex;
   flex-direction:  column;
   align-items:     center;
@@ -492,10 +492,10 @@ color: #bfbaad;
   color:           #2e2e2e;
 }
 
-.quest-journel .qjrnl-detail-placeholder i { font-size: 2.5em; }
-.quest-journel .qjrnl-detail-placeholder p { margin: 0; font-size: 0.88em; }
+.quest-Journal .qjrnl-detail-placeholder i { font-size: 2.5em; }
+.quest-Journal .qjrnl-detail-placeholder p { margin: 0; font-size: 0.88em; }
 
-.quest-journel .qjrnl-detail-empty {
+.quest-Journal .qjrnl-detail-empty {
   color:      #3a3a3a;
   font-style: italic;
   font-size:  0.85em;

@@ -1,5 +1,5 @@
 /**
- * Quest Journel — quest-manager.mjs
+ * Quest Journal — quest-manager.mjs
  * CRUD helpers for quest JournalEntry documents.
  */
 

@@ -1,5 +1,5 @@
 /**
- * Quest Journel — keybindings.mjs
+ * Quest Journal — keybindings.mjs
  * Registers the "J" keybind to open the quest log.
  */
 
@@ -9,7 +9,7 @@ import { MODULE_ID } from "./constants.mjs";
 export function registerKeybindings() {
   game.keybindings.register(MODULE_ID, "openQuestLog", {
     name:     "Open Quest Log",
-    hint:     "Opens the Quest Journel tracker.",
+    hint:     "Opens the Quest Journal tracker.",
     editable: [{ key: "KeyJ" }],
     onDown:   () => { QuestLogApp.toggle(); return true; },
   });

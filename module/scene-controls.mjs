@@ -1,5 +1,5 @@
 /**
- * Quest Journel — scene-controls.mjs
+ * Quest Journal — scene-controls.mjs
  * Adds a scroll button to the Notes layer scene controls.
  *
  * The hook receives the controls array; we push a tool into the "notes"
@@ -14,7 +14,7 @@ export function registerSceneControls(controls) {
 
   notesGroup.tools["qjrnl-open"] = {
     name:     "qjrnl-open",
-    title:    "Quest Journel",
+    title:    "Quest Journal",
     icon:     "fas fa-scroll",
     button:   true,
     onChange: () => QuestLogApp.open(),

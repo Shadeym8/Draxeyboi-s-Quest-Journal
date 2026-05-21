@@ -1,5 +1,5 @@
 /**
- * Quest Journel — constants.mjs
+ * Quest Journal — constants.mjs
  * Shared module-level constants.
  */
 

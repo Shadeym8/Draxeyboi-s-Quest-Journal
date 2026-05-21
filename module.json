@@ -2,7 +2,7 @@
   "id": "qjrnl",
   "title": "Draxeyboi's Quest Journal",
   "description": "A lightweight journal-backed quest tracker. GM creates and manages quests; players view them.",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -11,7 +11,8 @@
   "url":      "https://github.com/Shadeym8/Draxeyboi-s-Quest-Journal",
   "manifest": "https://raw.githubusercontent.com/Shadeym8/Draxeyboi-s-Quest-Journal/main/module.json",
   "download": "https://github.com/Shadeym8/Draxeyboi-s-Quest-Journal/releases/latest/download/qjrnl.zip",
+  "changelog": "https://raw.githubusercontent.com/Shadeym8/Draxeyboi-s-Quest-Journal/main/CHANGELOG.md",
   "authors": [{ "name": "Draxeyboi" }],
-  "esmodules": ["quest-journel.mjs"],
-  "styles": ["styles/quest-journel.css"]
+  "esmodules": ["quest-journal.mjs"],
+  "styles": ["styles/quest-journal.css"]
 }

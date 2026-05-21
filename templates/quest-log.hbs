@@ -1,13 +1,18 @@
-{{!-- Quest Journel — quest-log.hbs --}}
+{{!-- Quest Journal — quest-log.hbs --}}
 <div class="qjrnl-layout">
+
+  {{> "modules/qjrnl/templates/journal-tab.hbs"}}
+
+  <div class="qjrnl-columns">
 
   {{!-- ── LEFT: Sidebar ─────────────────────────────────────────────────── --}}
   <aside class="qjrnl-sidebar">
 
+    {{#if isQuestsTab}}
     {{#if isGM}}
     <div class="qjrnl-toolbar">
       <button type="button" data-action="createQuest" class="qjrnl-btn-create">
-        <i class="fas fa-plus"></i> New Quest
+        <i class="fas fa-scroll"></i> Add Quest
       </button>
     </div>
     {{/if}}
@@ -26,6 +31,11 @@
             <div class="qjrnl-quest-row">
               <span class="qjrnl-status-icon qjrnl-status--active">!</span>
               <span class="qjrnl-quest-name" data-action="selectQuest">{{this.name}}</span>
+              {{#if this.pages.length}}
+              <button type="button" class="qjrnl-subpage-toggle" tabindex="-1">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              {{/if}}
               {{#if ../isGM}}
               <div class="qjrnl-quest-controls">
                 <button type="button" class="qjrnl-btn-more"><i class="fas fa-ellipsis-v"></i></button>
@@ -114,10 +124,62 @@
       </div>
 
     </div>{{!-- /.qjrnl-sidebar-body --}}
+    {{/if}}{{!-- /.isQuestsTab --}}
+
+    {{#if isNotesTab}}
+    <div class="qjrnl-toolbar">
+      <button type="button" data-action="createNote" class="qjrnl-btn-create">
+        <i class="fas fa-scroll"></i> Add Note
+      </button>
+    </div>
+    <div class="qjrnl-sidebar-body">
+      <ul class="qjrnl-list">
+        {{#each notes}}
+        <li class="qjrnl-quest{{#if this.isSelected}} qjrnl-quest--selected{{/if}}" data-note-id="{{this.id}}">
+          <div class="qjrnl-quest-row">
+            <span class="qjrnl-quest-name" data-action="selectNote">{{this.name}}</span>
+            <div class="qjrnl-quest-controls">
+              <button type="button" class="qjrnl-btn-more"><i class="fas fa-ellipsis-v"></i></button>
+              <div class="qjrnl-quest-menu">
+                <button type="button" data-action="editNote"><i class="fas fa-pen"></i> Edit</button>
+                <button type="button" data-action="deleteNote" class="qjrnl-btn-delete"><i class="fas fa-trash"></i> Delete</button>
+              </div>
+            </div>
+          </div>
+        </li>
+        {{else}}
+        <li class="qjrnl-empty">None.</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/if}}{{!-- /.isNotesTab --}}
   </aside>
 
   {{!-- ── RIGHT: Detail panel ────────────────────────────────────────────── --}}
   <div class="qjrnl-detail" data-quest-id="{{selectedQuestId}}">
+    {{#if isNotesTab}}
+    {{#if selectedNoteName}}
+
+      <h1 class="qjrnl-quest-title">{{selectedNoteName}}</h1>
+
+      {{#each selectedNotePages}}
+      <div class="qjrnl-page" data-page-id="{{this.id}}">
+        <h2 class="qjrnl-page-header">
+          <span class="qjrnl-page-name">{{this.name}}</span>
+        </h2>
+        <div class="qjrnl-page-content">{{{this.content}}}</div>
+      </div>
+      {{else}}
+      <p class="qjrnl-detail-empty">This note has no pages yet.</p>
+      {{/each}}
+
+    {{else}}
+    <div class="qjrnl-detail-placeholder">
+      <i class="fas fa-book-open"></i>
+      <p>Click a note to view it.</p>
+    </div>
+    {{/if}}
+    {{else}}
     {{#if selectedQuestName}}
 
       <h1 class="qjrnl-quest-title">{{selectedQuestName}}</h1>
@@ -150,7 +212,10 @@
       <p>Select a quest to view its details.</p>
     </div>
     {{/if}}
+    {{/if}}{{!-- /.isNotesTab --}}
   </div>
+
+  </div>{{!-- /.qjrnl-columns --}}
 <img class="qjrnl-bg-texture" src="modules/qjrnl/assets/icons/parchtexturebr.webp" alt="">
 </div>{{!-- /.qjrnl-layout --}}
 

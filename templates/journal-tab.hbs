@@ -1,0 +1,13 @@
+{{!-- Quest Journal — journal-tab.hbs --}}
+<div class="qjrnl-tabs">
+  <button type="button"
+          class="qjrnl-tab{{#if isQuestsTab}} qjrnl-tab--active{{/if}}"
+          data-action="switchTab" data-tab="quests">
+    <i class="fas fa-scroll"></i> Quests
+  </button>
+  <button type="button"
+          class="qjrnl-tab{{#if isNotesTab}} qjrnl-tab--active{{/if}}"
+          data-action="switchTab" data-tab="notes">
+    <i class="fas fa-book-open"></i> Notes
+  </button>
+</div>

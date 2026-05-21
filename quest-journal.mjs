@@ -1,5 +1,5 @@
 /**
- * Quest Journel — quest-journel.mjs
+ * Quest Journal — quest-Journal.mjs
  * Module entry point.
  */
 
@@ -10,14 +10,14 @@ import { registerSceneControls } from "./module/scene-controls.mjs";
 import { registerSettings }      from "./module/settings.mjs";
 
 Hooks.once("init", () => {
-  console.log("qJrnl | Quest Journel initialising...");
+  console.log("qJrnl | Quest Journal initialising...");
   registerSettings();
   registerKeybindings();
   loadTemplates(["modules/qjrnl/templates/journal-tab.hbs"]);
 });
 
 Hooks.once("ready", async () => {
-  console.log("qJrnl | Quest Journel ready.");
+  console.log("qJrnl | Quest Journal ready.");
   if (game.user.isGM) await QuestManager.ensureFolder();
 });
 

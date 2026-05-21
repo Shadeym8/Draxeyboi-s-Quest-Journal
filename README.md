@@ -7,10 +7,13 @@ A Simple Lightweight module system that helps to track Foundry's Journals throug
 ## Features
 
 - **Quest tracking** — Create quests with Active, Complete, and Failed states
+- **User Notes** - Create personal Notes from within the notes tab.
 - **Page objectives** — Each quest supports multiple journal pages as objectives
 - **GM visibility control** — Reveal or hide quests and individual pages from players at any time
 - **Audio cues** — Configurable sounds for quest reveal and quest update events
 - **Keybind** — Press `J` to open or close the quest log (configurable in Controls)
+
+**Note:** Players must have permission to create new journal entries in order create their own notes within the notes tab.
 
 ---
 

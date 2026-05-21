@@ -1,5 +1,3 @@
-<img width="951" height="688" alt="image" src="https://github.com/user-attachments/assets/2fb24a5a-f447-4692-8945-e6a2f65f2936" /># Draxeyboi's Quest Journal
-
 A Simple Lightweight module system that helps to track Foundry's Journals through a quest ui which can be opened and closed with the default keybind (J).
 
 ---

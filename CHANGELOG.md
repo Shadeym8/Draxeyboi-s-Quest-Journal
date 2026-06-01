@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2] - 2026-06-01
+
+### Fixed
+- Removed inherited chat background textures from qjrnl chat cards.
+
+---
+
 ## [1.1.1] - 2026-05-21
 
 ### Fixed

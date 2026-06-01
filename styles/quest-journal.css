@@ -503,16 +503,25 @@ color: #bfbaad;
 
 /* ── Chat cards ───────────────────────────────────────────────────────────── */
 .chat-message.message.flexcol:has(.qjrnl-chat-card) {
-  background: linear-gradient(160deg, #1c1c1c 0%, #101010 45%, #000000 100%);
-  border:     1px solid #242424;
-  box-shadow: 0 0 24px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(160deg, #1c1c1c 0%, #101010 45%, #000000 100%) !important;
+  border:     1px solid #242424 !important;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.8) !important; 
 }
 
 .chat-message.message.flexcol:has(.qjrnl-chat-card) .message-header {
   display: none;
 }
+
+.chat-message.message.flexcol:has(.qjrnl-chat-card) .message-content {
+  background: none !important;
+  background-image: none !important;
+}
+
 .qjrnl-chat-card {
   position:      relative;
+  z-index:       1;
+  background:    #161616 !important;
+  background-image: none !important;
   border-top:    1px solid #937b63;
   border-bottom: 1px solid #937b63;
   padding:       24px 16px 14px;

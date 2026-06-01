@@ -2,7 +2,7 @@
   "id": "qjrnl",
   "title": "Draxeyboi's Quest Journal",
   "description": "A lightweight journal-backed quest tracker. GM creates and manages quests; players view them.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "compatibility": {
     "minimum": "13",
     "verified": "14"

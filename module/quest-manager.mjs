@@ -103,11 +103,22 @@ export class QuestManager {
       ? CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE
       : CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER;
     await quest.update({ "ownership.default": next });
-    if (next === CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER)
+    if (next === CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER) {
+    /**
+     * When we reveal a quest, we need to hide all pages under that quest by default.
+     * If we don't do this all the pages (and thus quest stages) which inherit
+     * their ownership from the quest will be visible for all users.
+     */
+      for(const page of quest.pages) {
+        const current = page.ownership?.default ?? CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT;
+        if(current === CONST.DOCUMENT_OWNERSHIP_LEVELS.INHERIT)
+          await page.update({ "ownership.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE});
+      }
       await QuestManager.#announce(
         QuestManager.#chatCard("New Quest", quest.name),
         "questRevealedSound"
       );
+    }
   }
 
   /**
